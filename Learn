@@ -1,0 +1,39 @@
+<div class="article">
+    <h2>{title of the article}</h2>
+    <p class="date">{date of the article}</p>
+
+    {three separate paragraph elements}
+
+    <span class='expandButton'></span>
+</div>
+
+
+
+function buttonCreator(buttonText) {
+  const button = document.createElement("button");
+  button.txtContent = buttonText;
+  button.classList.add("buttonClass");
+  button.addEventListener("click", function() {
+    console.log("clicked!");
+  });
+}
+
+let firstButton = buttonCreator("Button 1");
+let secondButton = buttonCreator("Button 2");
+
+parent.appendChild(firstButton);
+parent.appendChild(secondButton);
+
+data.forEach(function(item) {
+  let newButton = buttonCreator(item);
+  parent.appendChild(newButton);
+});
+
+let newComponents = data.map(function(item) {
+  let newButton = buttonCreator(item);
+  return newButton;
+});
+
+newComponents.forEach(function(component) {
+  parent.appendChild(component);
+});
