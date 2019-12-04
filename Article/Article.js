@@ -1,6 +1,4 @@
-/* This is the data we will be using to create our article components */
-/* Look over this data, then proceed to line 91*/
-const list = [
+const articleData = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
     date: "Nov 5th, 2018",
@@ -95,84 +93,43 @@ const list = [
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
-
-    {three separate paragraph elements}
-
-    <span class='expandButton'></span>
-  </div>
-
-  Hint: You will need to use createElement more than once here!
-
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
-
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
-*/
-
 const entryPoint = document.querySelector(".articles");
 
 function articleCreator(data) {
   const section = document.createElement("div");
-  const date = document.createElement("p");
   const title = document.createElement("h2");
-  const paragraphOne = document.createElement("p");
-  const paragraphTwo = document.createElement("p");
-  const paragraphThree = document.createElement("p");
-  const button = document.createElement("span");
+  const date = document.createElement("p");
+  const para1 = document.createElement("p");
+  const para2 = document.createElement("p");
+  const para3 = document.createElement("p");
+  const btnExpand = document.createElement("span");
 
   section.classList.add("article");
   date.classList.add("date");
-  button.classList.add("expandButton");
+  btnExpand.classList.add("expandButton");
 
   title.textContent = data.title;
   date.textContent = data.date;
-  paragraphOne.textContent = data.firstParagraph;
-  paragraphTwo.textContent = data.secondParagraph;
-  paragraphThree.textContent = data.thirdParagraph;
-  button.textContent = "expand";
+  para1.textContent = data.firstParagraph;
+  para2.textContent = data.secondParagraph;
+  para3.textContent = data.thirdParagraph;
+  btnExpand.textContent = "expand";
 
-  button.addEventListener("click", function() {
+  section.append(title, date, para1, para2, para3, btnExpand);
+
+  btnExpand.addEventListener("click", () => {
     section.classList.toggle("article-open");
-    if (button.textContent === "expand") {
-      button.textContent = "close";
+    if (btnExpand.textContent === "expand") {
+      btnExpand.textContent = "close";
     } else {
-      button.textContent = "expand";
+      btnExpand.textContent = "expand";
     }
   });
-
-  //? paragraphThree.style.marginBottom = "1rem";
-
-  section.append(
-    title,
-    date,
-    paragraphOne,
-    paragraphTwo,
-    paragraphThree,
-    button
-  );
-
-  // section.appendChild(title);
-  // section.appendChild(date);
-  // section.appendChild(paragraphOne);
-  // section.appendChild(paragraphTwo);
-  // section.appendChild(paragraphThree);
-  // section.appendChild(button);
 
   return section;
 }
 
-list.forEach(function(item) {
-  let newArticle = articleCreator(item);
-  entryPoint.appendChild(newArticle);
+articleData.forEach(function(data) {
+  let newArticle = articleCreator(data);
+  entryPoint.append(newArticle);
 });
