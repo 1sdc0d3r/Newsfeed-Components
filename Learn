@@ -11,7 +11,7 @@
 
 function buttonCreator(buttonText) {
   const button = document.createElement("button");
-  button.txtContent = buttonText;
+  button.textContent = buttonText;
   button.classList.add("buttonClass");
   button.addEventListener("click", function() {
     console.log("clicked!");
@@ -21,12 +21,12 @@ function buttonCreator(buttonText) {
 let firstButton = buttonCreator("Button 1");
 let secondButton = buttonCreator("Button 2");
 
-parent.appendChild(firstButton);
-parent.appendChild(secondButton);
+parent.append(firstButton);
+parent.append(secondButton);
 
 data.forEach(function(item) {
   let newButton = buttonCreator(item);
-  parent.appendChild(newButton);
+  parent.append(newButton);
 });
 
 let newComponents = data.map(function(item) {
@@ -35,5 +35,5 @@ let newComponents = data.map(function(item) {
 });
 
 newComponents.forEach(function(component) {
-  parent.appendChild(component);
+  parent.append(component);
 });

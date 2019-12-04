@@ -144,14 +144,14 @@ function articleCreator(data) {
 
   button.addEventListener("click", function() {
     section.classList.toggle("article-open");
-    // if (section.classList.includes("article-open")) {
-    //   button.textContent = "close";
-    // } else {
-    //   button.textContent = "expand";
-    // }
+    if (button.textContent === "expand") {
+      button.textContent = "close";
+    } else {
+      button.textContent = "expand";
+    }
   });
 
-  //? button.style.marginTop = "1rem";
+  //? paragraphThree.style.marginBottom = "1rem";
 
   section.append(
     title,
